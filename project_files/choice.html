@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Select User or Doctor</title>
+	<style>
+
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #52d4fc;
+		}
+
+		h1 {
+			text-align: center;
+			color: #333;
+		}
+
+		main {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+		}
+
+		p {
+			font-size: 20px;
+			color: #131012;
+			margin-bottom: 20px;
+		}
+
+		button {
+			padding: 10px 20px;
+			font-size: 18px;
+			background-color: #4CAF50;
+			color: rgb(255, 255, 255);
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin: 10px;
+		}
+
+		button:hover {
+			background-color: #00ff08;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Welcome to our website</h1>
+	<main>
+		<p>Please select an option below:</p>
+		<button onclick="selectUser()">Select User</button>
+		<button onclick="chooseDoctor()">Select Doctor</button>
+	</main>
+	<script>
+		function selectUser() {
+			window.open("UserChoice.html");
+		}
+		function chooseDoctor() {
+			window.open("SECOND_20F-0115_20F-0116_BSE-6B.html");
+		}
+	</script>
+</body>
+
+</html>

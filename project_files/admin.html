@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Admin Page</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    .hidden2 {
+      display: none;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-image: linear-gradient(120deg, #ff00cc, #00d4ff);
+      background-repeat: no-repeat;
+      background-size: cover;
+      /* display: flex; */
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .d {
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      background-color: #ff6969;
+      max-width: 600px;
+      animation: slide-in 0.5s ease;
+    }
+
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0;
+      font-size: 48px;
+      color: #000000;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 40px;
+    }
+
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 15px;
+      width: 50%;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      font-size: 18px;
+      background-color: #ffffff;
+      color: #333333;
+    }
+
+    .button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border: none;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+
+    .btn1 {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #ff1bff;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border: none;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    .btn1:hover {
+      transform: scale(1.1);
+      background-color: #3de0f6;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      background-color: #3E8E41;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="clear: both;">
+    <h1>Admin Panel</h1>
+    <div class="button-container d" style="display: flex;clear: both;">
+      <button class="button" onclick="visible2()">Delete</button>
+      <button class="button" onclick="visible()">Update</button>
+      <button class="button" type="submit" onclick="getView()">View</button>
+      <button class="button" type="submit" onclick="getAppointments()"> Appointments</button>
+    </div>
+
+  </div>
+  <div>
+    <table id="table"></table>
+    <br>
+  </div>
+
+  <div style="display: flex;">
+    <div>
+        <div>
+          <label for="email" class="hidden">Email:</label>
+        </div>
+        <div>
+          <input type="email" id="email" class="hidden" name="email">
+        </div>
+      </div>
+
+      <div>
+    <div>
+      <label for="Starttime" class="hidden">Start Time:</label>
+    </div>
+    <div>
+      <input type="datetime-local" id="Starttime" class="hidden" name="Starttime">
+    </div>
+  </div>
+<div>
+    <div>
+      <label for="Endtime" class="hidden">End Time:</label>
+    </div>
+    <div>
+      <input type="datetime-local" id="Endtime" class="hidden" name="Endtime">
+    </div>
+  </div>
+
+<div>
+    <div>
+      <label for="phone" class="hidden">Phone Number:</label>
+    </div>
+    <div>
+      <input type="number" id="phone" class="hidden" name="phone">
+    </div>
+  </div>
+
+    <div>
+      <br>
+      <button type="submit" class="hidden btn1" onclick="getUpdate()">Update</button>
+    </div>
+  </div>
+
+  <div style="display: flex;">
+  <div>
+    <div>
+      <label for="email" class="hidden2">Email:</label>
+    </div>
+    <div>
+      <input type="email" id="email" class="hidden2" name="email">
+    </div>
+  </div>
+    <div>
+      <br>
+      <button type="submit" class="hidden2 btn1" onclick="getDelete()">Delete</button>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+  function visible() {
+    var elements = document.getElementsByClassName("hidden");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.display = "block";
+    }
+  }
+
+  function visible2() {
+    var elements = document.getElementsByClassName("hidden2");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.display = "block";
+    }
+  }
+
+
+  function getView() {
+    $('#table').html('');
+    $.ajax({
+      url: 'http://localhost:4000/viewDoc',
+      type: 'GET',
+      success: function (data) {
+        var table = $('#table');
+        table.append('<tr><th>First name</th><th>Last Name</th><th>Location</th><th>Hospital</th><th>Email</th><th>Phone</th><th>Gender</th><th>specialization</th><th>Expertise</th><th>Note</th><th>Start time</th><th>End time</th></tr>');
+        data.forEach(function (obj) {
+          table.append('<tr><td>' + obj.fname + '</td><td>' + obj.lname + '</td><td>' + obj.location + '</td><td>' + obj.hospital + '</td>><td>' + obj.email + '</td>><td>' + obj.phone + '</td>><td>' + obj.gender + '</td><td>' + obj.specialization + '</td><td>' + obj.Expertise + '</td><td>' + obj.Note + '</td>><td>' + obj.Starttime + '</td>><td>' + obj.Endtime + '</td><tr>');
+        });
+      }
+    });
+  }
+
+  function getAppointments() {
+    $('#table').html('');
+    $.ajax({
+      url: 'http://localhost:4000/viewAppointments',
+      type: 'GET',
+      success: function (data) {
+        var table = $('#table');
+        table.append('<tr><th>Name</th><th>Email</th><th>Patient Name</th><th>Description</th><th>Appointment Number</th></tr>');
+        data.forEach(function (obj) {
+          table.append('<tr><td>' + obj.name + '</td><td>' + obj.email + '</td><td>' + obj.user_name + '</td><td>' + obj.description + '</td><td>' + obj.randomNum + '</td><tr>');
+        });
+      }
+    });
+  }
+
+
+
+  function getUpdate() {
+
+    var Starttime = $("#Starttime").val();
+    var phone = $("#phone").val();
+    var Endtime = $("#Endtime").val();
+    var email = $("#email").val().trim();
+
+    if (Starttime == "" || Endtime == "" || phone == "" || email == "") {
+            alert("Fill all the Fields to make an Updation");
+            return;
+        }
+    var data = { email: email, phone: phone, Starttime: Starttime, Endtime: Endtime };
+    let post = JSON.stringify(data);
+    $.ajax({
+      url: 'http://localhost:4000/getUpdateDoc',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      type: 'POST',
+      contentType: 'application/json',
+      data: post,
+      success: function (data) {
+        if (data == 1) {
+          alert("Updated Successfully");
+        }
+        else {
+          alert("Updation Failed");
+        }
+
+      },
+      error: function () {
+        alert('error');
+      }
+    });
+  }
+
+
+  function getDelete() {
+
+    var email = $("#email").val().trim();
+    if (email == "") {
+            alert("Fill all the Fields to make a Deletion");
+            return;
+        }
+    var data = { email: email };
+    let post = JSON.stringify(data);
+    $.ajax({
+      url: 'http://localhost:4000/getDeleteDoc',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      type: 'POST',
+      contentType: 'application/json',
+      data: post,
+      success: function (data) {
+        if (data == 1) {
+          alert("Deletion Successfully");
+        }
+        else {
+          alert("Deletion Failed");
+        }
+
+      },
+      error: function () {
+        alert('error');
+      }
+    });
+  }
+
+</script>

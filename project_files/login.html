@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: linear-gradient(120deg, #ff00cc, #00d4ff);
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    div {
+      margin: 50px auto;
+      padding: 60px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      background-color: #ff6969;
+      max-width: 600px;
+      animation: slide-in 0.5s ease;
+    }
+
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Style for email and password input fields */
+    input[type="email"],
+    input[type="password"] {
+      display: block;
+      margin: 10px 0;
+      padding: 15px;
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      font-size: 18px;
+      background-color: #ffffff;
+      color: #333333;
+    }
+
+    /* Style for login button */
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Style for hover effect on login button */
+    input[type="submit"]:hover {
+      background-color: #3E8E41;
+    }
+
+    /* Style for heading */
+    h1 {
+      text-align: center;
+      margin: 0;
+      font-size: 48px;
+      color: #333333;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Style for paragraph */
+    p {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 16px;
+      color: #333333;
+    }
+
+    /* Style for sign up link */
+    p a {
+      color: #FFFFFF;
+      transition: color 0.3s ease;
+    }
+
+    p a:hover {
+      color: #4CAF50;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1>Login</h1>
+    <input type="email" name="email" id="email" placeholder="Email" required>
+    <input type="password" name="password" id="password" placeholder="Password" required>
+    <input type="submit" value="Login" onclick="getdata()">
+    <p>Don't have an account? <a href="C:\Users\usman\OneDrive\Desktop\NodeTest\HMS_FINAL_VERSION_0.0\signup.html">Sign up</a></p>
+    <p>Add Yourself as a Doctor? <a href="C:\Users\usman\OneDrive\Desktop\NodeTest\HMS_FINAL_VERSION_0.0\SECOND_20F-0115_20F-0116_BSE-6B.html">Register</a></p>
+  </div>
+</body>
+</html>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+
+  function getdata() {
+   
+            var password = $("#password").val();
+            var email = $("#email").val().trim();
+            if (email == '' || password == '')
+            {
+              alert("Please Fill the Required Fields");
+              return;
+            }
+            var data = {email: email, password:password};
+            let post = JSON.stringify(data);
+            $.ajax({
+                url: 'http://localhost:4000/getdata',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                type: 'POST',
+                contentType: 'application/json',
+                data:post,
+                success: function (data) {
+                    if (data == 1)
+                    {
+                      window.open("UserChoice.html");
+                    }
+                    else if (data == -1)
+                    {
+                      checkAdmin();
+                    }else {
+                      alert("Login Failed");
+                    }
+                 
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        }
+function checkAdmin(){
+           var password = $("#password").val();
+            var email = $("#email").val().trim();
+  var data = {email: email, password:password};
+            let post = JSON.stringify(data);
+            $.ajax({
+                url: 'http://localhost:4000/getdataAdmin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                type: 'POST',
+                contentType: 'application/json',
+                data:post,
+                success: function (data) {
+                    if (data == 1)
+                    {
+                      window.open("admin.html");
+                    }
+                    else {
+                      alert("Login Failed");
+                    }
+                 
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+}
+
+
+</script>
